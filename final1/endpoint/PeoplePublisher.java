@@ -14,7 +14,7 @@ import javax.xml.ws.Endpoint;
 
 public class PeoplePublisher {
     public static String SERVER_URL = "http://localhost";
-    public static String PORT = "6902";
+    public static String PORT = "5700";
     public static String BASE_URL = "/ws/people";
 
     public static String getEndpointURL() {
