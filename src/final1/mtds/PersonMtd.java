@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
  * @author benhur
  */
 public class PersonMtd {
-    public static Person returnPersonById(int personId) {
+    public static Person returnPersnById(int personId) {
         EntityManager em = Life.instance.createEntityManager();
         Person p = em.find(Person.class, personId);
 	   Person pzz = new Person();
@@ -56,7 +56,7 @@ public class PersonMtd {
         return Plist;
     }
 
-     public static List<Person> getPersonById(int personId) {
+     public static List<Person> getPersnById(int personId) {
        EntityManager em = Life.instance.createEntityManager();
        List<Person> plist = em.createNamedQuery("Person.findByPid", Person.class)
 	    .setParameter("pid", personId)
@@ -65,7 +65,7 @@ public class PersonMtd {
         return plist;
     }
     
-    public static Person savePerson(Person p) {
+    public static Person savePersn(Person p) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
@@ -75,7 +75,7 @@ public class PersonMtd {
         return p;
     } 
 
-    public static Person updatePerson(Person p) {
+    public static Person updatePersn(Person p) {
         EntityManager em = Life.instance.createEntityManager(); 
         EntityTransaction tx = em.getTransaction();
         tx.begin();
@@ -85,7 +85,7 @@ public class PersonMtd {
         return p;
     }
 
-    public static void removePerson(Person p) {
+    public static void removePersn(Person p) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
@@ -95,7 +95,7 @@ public class PersonMtd {
         Life.instance.closeConnections(em);
     }
     
-      public static List<Healthprofile> getPersonMeasure(int personId,String ms) {
+      public static List<Healthprofile> getPersnMeasure(int personId,String ms) {
 	EntityManager em = Life.instance.createEntityManager();
        List<Healthprofile> list = new ArrayList<Healthprofile>();//getHealthprof(personId);
 	List<Type> tt = TypeMtd.getTypeByString(ms);
@@ -116,7 +116,7 @@ public class PersonMtd {
         return list;
     }
       
-      public static Healthprofile getPersonMeasureId(int personId,String ms,int mid) {
+      public static Healthprofile getPersnMeasureId(int personId,String ms,int mid) {
 	 EntityManager em = Life.instance.createEntityManager();
        List<Healthprofile> list = HealthMtd.getByPidHid(mid, mid);	
         Life.instance.closeConnections(em);
