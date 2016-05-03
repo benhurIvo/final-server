@@ -25,7 +25,7 @@ public class PeopleImpl implements People {
     @Override
     public Person readPerson(int id) {
         System.out.println("---> Reading Person by id = "+id);
-        Person p = PersonMtd.returnPersonById(id);
+        Person p = PersonMtd.returnPersnById(id);
         if (p!=null) {
             System.out.println("---> Found Person by id = "+id+" => "+p.getFirstname());
         } else {
@@ -42,10 +42,10 @@ public class PeopleImpl implements People {
     @Override
     public List<Person> deletePerson(int id) {
 		System.out.println("deleting person with id " + id );            
-      List<Person> plist = PersonMtd.getPersonById(id);
+      List<Person> plist = PersonMtd.getPersnById(id);
       if(plist!=null){
       Person p = plist.get(0);
-	PersonMtd.removePerson(p);
+	PersonMtd.removePersn(p);
       }
       return PersonMtd.getAll();
     }
@@ -53,7 +53,7 @@ public class PeopleImpl implements People {
   
     @Override
     public List<Healthprofile> readPersonHistory(int id, String measure) {
-	return PersonMtd.getPersonMeasure(id, measure);
+	return PersonMtd.getPersnMeasure(id, measure);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class PeopleImpl implements People {
     @Override
     public Healthprofile readPersonMeasure(int id, String measure, int mid) {
 	
- return PersonMtd.getPersonMeasureId(id, measure, mid);
+ return PersonMtd.getPersnMeasureId(id, measure, mid);
     }
 
     @Override
@@ -84,7 +84,7 @@ List<Healthprofile> list = PersonMtd.getHealthprof(id);
     }
 	HealthMtd.saveHealthprofile(hp);
     }
- return PersonMtd.getPersonMeasure(id, measure);
+ return PersonMtd.getPersnMeasure(id, measure);
     }
 
     @Override
@@ -100,12 +100,12 @@ List<Healthprofile> list = PersonMtd.getHealthprof(id);
 	
 	HealthMtd.updateHealth(h);
     }
- return PersonMtd.getPersonMeasureId(id, measure, mid);
+ return PersonMtd.getPersnMeasureId(id, measure, mid);
     }
 
     @Override
     public Person addPerson(Person person, Healthprofile hp) {
-	PersonMtd.savePerson(person);	
+	PersonMtd.savePersn(person);	
 	HealthMtd.saveHealthprofile(hp);
 	List<Person> ps = PersonMtd.getAll();
 	return ps.get(ps.size()-1);
@@ -114,7 +114,7 @@ List<Healthprofile> list = PersonMtd.getHealthprof(id);
     @Override
     public Person updatePerson(Person person, int id) {
 	System.out.println("hhh "+ person.getBirthdate() + person.getLastname()+person.getFirstname());
-	List<Person> plist = PersonMtd.getPersonById(id);
+	List<Person> plist = PersonMtd.getPersnById(id);
       if(plist!=null){
       Person p = plist.get(0);
       p.setPid(id);
@@ -144,10 +144,10 @@ List<Healthprofile> list = PersonMtd.getHealthprof(id);
       if(!"".equals(person.getPassword()))
       p.setBirthdate(person.getPassword());
       else p.setBirthdate(p.getPassword());
-      PersonMtd.updatePerson(p);
+      PersonMtd.updatePersn(p);
       }
 
-      return PersonMtd.returnPersonById(id);
+      return PersonMtd.returnPersnById(id);
 	}
 
     @Override
