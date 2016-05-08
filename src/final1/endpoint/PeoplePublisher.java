@@ -33,10 +33,10 @@ public class PeoplePublisher {
         if (String.valueOf(System.getenv("PORT")) != "null"){
             PORT=String.valueOf(System.getenv("PORT"));
         }
-        
         String endpointUrl = PROTOCOL+HOSTNAME+":"+PORT+BASE_URL;
         System.out.println("Starting People Service...");
         System.out.println("--> Published. Check out "+endpointUrl+"?wsdl");
         Endpoint.publish(endpointUrl, new PeopleImpl());
     }
 }
+//https://hidden-beach-21772.herokuapp.com/ws/people?wsdl

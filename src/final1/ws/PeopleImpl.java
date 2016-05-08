@@ -23,176 +23,127 @@ import javax.jws.WebService;
 public class PeopleImpl implements People {
 
     @Override
-    public Person readPerson(int id) {
-        System.out.println("---> Reading Person by id = "+id);
-        Person p = PersonMtd.returnPersnById(id);
-        if (p!=null) {
-            System.out.println("---> Found Person by id = "+id+" => "+p.getFirstname());
-        } else {
-            System.out.println("---> Didn't find any Person with  id = "+id);
-        }
-        return p;
+    public Person getPersonById(int pid) {
+	return PersonMtd.getPersonById(pid);
     }
 
     @Override
-    public List<Person> getPeople() {
-        return PersonMtd.getAll();
+    public List<Person> getAll() {
+	return PersonMtd.getAll();
     }
 
     @Override
-    public List<Person> deletePerson(int id) {
-		System.out.println("deleting person with id " + id );            
-      List<Person> plist = PersonMtd.getPersnById(id);
-      if(plist!=null){
-      Person p = plist.get(0);
-	PersonMtd.removePersn(p);
-      }
-      return PersonMtd.getAll();
-    }
-
-  
-    @Override
-    public List<Healthprofile> readPersonHistory(int id, String measure) {
-	return PersonMtd.getPersnMeasure(id, measure);
+    public Person savePerson(Person person) {
+	return PersonMtd.savePerson(person);
     }
 
     @Override
-    public List<Type> readMeasureTypes() {
-	 System.out.println("Getting list of measuretypes...");
-        return TypeMtd.getAll();
+    public Person updatePerson(Person person) {
+	return PersonMtd.updatePerson(person);
     }
 
     @Override
-    public Healthprofile readPersonMeasure(int id, String measure, int mid) {
-	
- return PersonMtd.getPersnMeasureId(id, measure, mid);
+    public List<Person> removePerson(Person p) {
+	 PersonMtd.removePerson(p);
+	 return PersonMtd.getAll();
     }
 
     @Override
-    public List<Healthprofile> savePersonMeasure(int id, String measure,String m) {
-List<Healthprofile> list = PersonMtd.getHealthprof(id);
-    Healthprofile hp = new Healthprofile();
-    Date det = new Date();
-    if(list!=null){
-	for(Healthprofile hp1:list){
-	if(hp1.getTid().getType().equals(measure)){
-	    hp.setValue(m);
-	    hp.setPid(hp1.getPid());
-	    hp.setTid(hp1.getTid());
-	    hp.setDatecreated(new SimpleDateFormat("yyyy-MM-dd").format(det));
-	    }
-    }
-	HealthMtd.saveHealthprofile(hp);
-    }
- return PersonMtd.getPersnMeasure(id, measure);
+    public List<Healthprofile> getHProfByPrsnMeasure(int pid, String mes) {
+	return PersonMtd.getHProfByPrsnMeasure(pid, mes);
     }
 
     @Override
-    public Healthprofile updatePersonHP(int id, String measure, int m, int mid) {
-	if(!HealthMtd.getByPidHid(mid, id).isEmpty()){
-	List<Healthprofile> hp = HealthMtd.getByPidHid(mid, id);
-	Healthprofile h = hp.get(0);
-	h.setDatecreated(h.getDatecreated());
-	h.setHid(h.getHid());
-	h.setPid(h.getPid());
-	h.setTid(h.getTid());
-	h.setValue(String.valueOf(m));
-	
-	HealthMtd.updateHealth(h);
-    }
- return PersonMtd.getPersnMeasureId(id, measure, mid);
+    public List<Healthprofile> getHealthprofByPid(int pid) {
+	return PersonMtd.getHealthprofByPid(pid);
     }
 
     @Override
-    public Person addPerson(Person person, Healthprofile hp) {
-	PersonMtd.savePersn(person);	
-	HealthMtd.saveHealthprofile(hp);
-	List<Person> ps = PersonMtd.getAll();
-	return ps.get(ps.size()-1);
+    public Healthprofile getHealthProfByPidTid(int pid, int mid) {
+	return PersonMtd.getHealthProfByPidTid(pid, mid);
     }
 
     @Override
-    public Person updatePerson(Person person, int id) {
-	System.out.println("hhh "+ person.getBirthdate() + person.getLastname()+person.getFirstname());
-	List<Person> plist = PersonMtd.getPersnById(id);
-      if(plist!=null){
-      Person p = plist.get(0);
-      p.setPid(id);
-      if(!"".equals(person.getFirstname()))
-      p.setFirstname(person.getFirstname());
-      else p.setFirstname(p.getFirstname());
-      p.setBirthdate(p.getBirthdate());
-      p.setLastname(p.getLastname());
-      
-      if(!"".equals(person.getLastname()))
-      p.setLastname(person.getLastname());
-      else p.setLastname(p.getLastname());
-      
-      
-      if(!"".equals(person.getBirthdate()))
-      p.setBirthdate(person.getBirthdate());
-      else p.setBirthdate(p.getBirthdate());
-      
-      if(!"".equals(person.getUsertype()))
-      p.setBirthdate(person.getUsertype());
-      else p.setBirthdate(p.getUsertype());
-      
-      if(!"".equals(person.getUname()))
-      p.setBirthdate(person.getUname());
-      else p.setBirthdate(p.getUname());
-      
-      if(!"".equals(person.getPassword()))
-      p.setBirthdate(person.getPassword());
-      else p.setBirthdate(p.getPassword());
-      PersonMtd.updatePersn(p);
-      }
-
-      return PersonMtd.returnPersnById(id);
-	}
-
-    @Override
-    public List<Goal> getGoals() {
-	return GoalMtd.getAll();
+    public Healthprofile getHealthById(int hid) {
+	return HealthMtd.getHealthById(hid);
     }
 
     @Override
-    public Goal addGoal(Person person, Type t, String g) {
-	Goal gg = new Goal();
-	gg.setPid(person);
-	gg.setTid(t);
-	GoalMtd.saveGoal(gg);
-	return gg;
+    public Healthprofile saveHealthprofile(Healthprofile hprof) {
+	return  HealthMtd.saveHealthprofile(hprof);
+    }
+
+    @Override
+    public Healthprofile updateHealth(Healthprofile hprof) {
+	return HealthMtd.updateHealth(hprof);
+    }
+
+    @Override
+    public Healthprofile removeHealth(Healthprofile hprof) {
+	HealthMtd.removeHealth(hprof);
+	return HealthMtd.getAllHP().get(0);
+    }
+
+    @Override
+    public List<Type> getAllType() {
+	return TypeMtd.getAllType();
+    }
+
+    @Override
+    public Type getTypeById(int tid) {
+	return TypeMtd.getTypeById(tid);
+    }
+
+    @Override
+    public List<Type> getTypeByString(String mes) {
+	return TypeMtd.getTypeByString(mes);
+		}
+
+    @Override
+    public Type saveType(Type typ) {
+	    return TypeMtd.saveType(typ);
+		    }
+
+    @Override
+    public Type updateType(Type typ) {
+	return TypeMtd.updateType(typ);
+    }
+
+    @Override
+    public Type removeType(Type typ) {
+	TypeMtd.removeType(typ);
+	return TypeMtd.getAllType().get(0);
+    }
+
+    @Override
+    public List<Goal> getAllGoal() {
+	return GoalMtd.getAllGoal();
+    }
+
+    @Override
+    public Goal saveGoal(Goal gol) {
+	return GoalMtd.saveGoal(gol);
+    }
+
+    @Override
+    public Goal getGoalById(int gid) {
+	return GoalMtd.getGoalById(gid);
     }
 
     @Override
     public Goal updateGoal(Goal g) {
-	GoalMtd.updateGoal(g);
-	return g;
+	return GoalMtd.updateGoal(g);
     }
 
     @Override
-    public List<Goal> deleteGoal(int gid) {
-	GoalMtd.removeGoal(GoalMtd.getGoalById(gid));
-	return GoalMtd.getAll();
+    public Goal getGolByPidTid(int pid, int tid) {
+	return GoalMtd.getGolByPidTid(tid, pid).get(0);
     }
 
     @Override
-    public Type addType(Type t) {
-	return TypeMtd.saveType(t);
+    public List<Goal> deleteGoal(Goal g) {
+	GoalMtd.removeGoal(g);
+	return GoalMtd.getAllGoal();
     }
-
-    @Override
-    public Type updateType(Type t) {
-	return TypeMtd.updateType(t);
-    }
-
-    @Override
-    public List<Type> deleteType(Type t) {
-	 TypeMtd.removeType(t);
-	 return TypeMtd.getAll();
-    }
-
  
-
-    
 }

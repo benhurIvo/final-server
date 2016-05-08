@@ -23,7 +23,7 @@ public class HealthMtd {
         return h;
     }
 
-    public static List<Healthprofile> getAll() {
+    public static List<Healthprofile> getAllHP() {
         EntityManager em = Life.instance.createEntityManager();
         List<Healthprofile> list = em.createNamedQuery("Health.findAll", Healthprofile.class)
             .getResultList();
@@ -61,7 +61,7 @@ public class HealthMtd {
 	return list;
     }
     
-    public static List<Healthprofile> getByPidTid(int pid,int tid) {
+    public static List<Healthprofile> getHealthByPidTid(int pid,int tid) {
      EntityManager em = Life.instance.createEntityManager(); 
          List<Healthprofile> list = em.createNamedQuery("Healthprofile.findByPidTid", Healthprofile.class)
 		.setParameter("pid", pid)

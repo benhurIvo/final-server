@@ -17,72 +17,106 @@ import javax.jws.soap.SOAPBinding.Use;
 @WebService
 @SOAPBinding(style = Style.DOCUMENT, use=Use.LITERAL) //optional
 public interface People {
-    @WebMethod(operationName="readPerson")
+    @WebMethod(operationName="getPersonById")
 //    @WebResult(name="person") 
-    public Person readPerson(@WebParam(name="rPid") int id);
+    public Person getPersonById(@WebParam(name="pid") int pid);
  
-    @WebMethod(operationName="getPeopleList")
+    @WebMethod(operationName="getAllPeople")
 //    @WebResult(name="person") 
-    public List<Person> getPeople();
+    public List<Person> getAll();
  
-    @WebMethod(operationName="createPerson")
+    @WebMethod(operationName="savePerson")
 //    @WebResult(name="person") 
-    public Person addPerson(@WebParam(name="cre_person") Person person,@WebParam(name="healthp") Healthprofile hp);
+    public Person savePerson(@WebParam(name="person") Person person);
  
     @WebMethod(operationName="updatePerson")
 //    @WebResult(name="person") 
-    public Person updatePerson(@WebParam(name="up_person") Person person,@WebParam(name="up_pid") int id);
+    public Person updatePerson(@WebParam(name="person") Person person);
     
-    @WebMethod(operationName="deletePerson")
+    @WebMethod(operationName="removePerson")
 //    @WebResult(name="person") 
-    public List<Person> deletePerson(@WebParam(name="del_pid") int pid);
+    public List<Person> removePerson(@WebParam(name="person") Person p);
     
-    @WebMethod(operationName="readPersonHistory")
+ @WebMethod(operationName="getHProfByPrsnMeasure")
 //    @WebResult(name="measure") 
-    public List<Healthprofile> readPersonHistory(@WebParam(name="his_pid") int id, @WebParam(name="his_measure") String measure);
+    public List<Healthprofile> getHProfByPrsnMeasure(@WebParam(name="pid") int pid,@WebParam(name="measure") String mes);  
+    
+    
+    @WebMethod(operationName="getHealthprofByPid")
+//    @WebResult(name="measure") 
+    public List<Healthprofile> getHealthprofByPid(@WebParam(name="pid") int pid);
+    
+ @WebMethod(operationName="getHealthProfByPidTid")
+//    @WebResult(name="measure") 
+    public Healthprofile getHealthProfByPidTid(@WebParam(name="pid") int pid,@WebParam(name="mid") int mid);  
+        
 
-    @WebMethod(operationName="readMeasureTypes")
+@WebMethod(operationName="getHealthById")
+//    @WebResult(name="measure") 
+    public Healthprofile getHealthById(@WebParam(name="hid") int hid);    
+    
+@WebMethod(operationName="saveHealthprofile")
+//    @WebResult(name="measure") 
+    public Healthprofile saveHealthprofile(@WebParam(name="hprof") Healthprofile hprof);
+    
+@WebMethod(operationName="updateHealth")
+//    @WebResult(name="measure") 
+    public Healthprofile updateHealth(@WebParam(name="hprof") Healthprofile hprof);
+
+@WebMethod(operationName="removeHealth")
+//    @WebResult(name="measure") 
+    public Healthprofile removeHealth(@WebParam(name="hprof") Healthprofile hprof);
+      
+    
+    @WebMethod(operationName="getAllType")
 //    @WebResult(name="measuretype") 
-    public List<Type> readMeasureTypes();
-
-    @WebMethod(operationName="readPersonMeasure")
+    public List<Type> getAllType();
+    
+@WebMethod(operationName="getTypeById")
 //    @WebResult(name="measure") 
-    public Healthprofile readPersonMeasure(@WebParam(name="m_pid") int id, @WebParam(name="m_measure") String measure, @WebParam(name="mid")int mid);
-
-    @WebMethod(operationName="savePersonMeasure")
+    public Type getTypeById(@WebParam(name="tid") int tid);    
+    
+@WebMethod(operationName="getTypeByString")
 //    @WebResult(name="measure") 
-    public List<Healthprofile> savePersonMeasure(@WebParam(name="s_pid") int id, @WebParam(name="s_measure") String measure,@WebParam(name="value") String m);
+    public List<Type> getTypeByString(@WebParam(name="mes") String mes);    
+    
+    @WebMethod(operationName="saveType")
+//    @WebResult(name="measuretype") 
+    public Type saveType(@WebParam(name="typ") Type typ);  
+    
+   @WebMethod(operationName="updateType")
+//    @WebResult(name="measuretype") 
+    public Type updateType(@WebParam(name="typ") Type typ);
+    
+   @WebMethod(operationName="removeType")
+//    @WebResult(name="measuretype") 
+    public Type removeType(@WebParam(name="typ") Type typ);
+    
 
-    @WebMethod(operationName="updatePersonHealthProfile")
-//    @WebResult(name="measure") 
-    public Healthprofile updatePersonHP(@WebParam(name="uphis_pid") int id, @WebParam(name="uphis_measure") String measure,@WebParam(name="MeasureObj") int m,@WebParam(name="mid")int mid);
 
-
-    @WebMethod(operationName="getGoalList")
+    @WebMethod(operationName="getAllGoal")
 //    @WebResult(name="person") 
-    public List<Goal> getGoals();
+    public List<Goal> getAllGoal();
  
-    @WebMethod(operationName="createGoal")
+    @WebMethod(operationName="saveGoal")
 //    @WebResult(name="person") 
-    public Goal addGoal(@WebParam(name="g_person") Person person,@WebParam(name="tid") Type t,@WebParam(name="goal") String g);
+    public Goal saveGoal(@WebParam(name="gol") Goal gol);
+    
+    @WebMethod(operationName="getGoalById")
+//    @WebResult(name="person") 
+    public Goal getGoalById(@WebParam(name="gid") int gid);
  
     @WebMethod(operationName="updateGoal")
 //    @WebResult(name="person") 
     public Goal updateGoal(@WebParam(name="goal") Goal g);
     
+    @WebMethod(operationName="getGolByPidTid")
+//    @WebResult(name="person") 
+    public Goal getGolByPidTid(@WebParam(name="pid") int pid,@WebParam(name="tid") int tid);
+    
     @WebMethod(operationName="deleteGoal")
 //    @WebResult(name="person") 
-    public List<Goal> deleteGoal(@WebParam(name="GoalId") int gid);
+    public List<Goal> deleteGoal(@WebParam(name="Goal") Goal g);
     
- @WebMethod(operationName="createType")
-//    @WebResult(name="person") 
-    public Type addType(@WebParam(name="creType") Type t);
- 
-    @WebMethod(operationName="updateType")
-//    @WebResult(name="person") 
-    public Type updateType(@WebParam(name="upType") Type t);
-    
-    @WebMethod(operationName="deleteType")
-//    @WebResult(name="person") 
-    public List<Type> deleteType(@WebParam(name="delType") Type t);   
+  
 }

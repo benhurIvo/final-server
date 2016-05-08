@@ -25,7 +25,7 @@ public class TypeMtd {
         return t;
     }
 
-    public static List<Type> getAll() {
+    public static List<Type> getAllType() {
         EntityManager em = Life.instance.createEntityManager();
         List<Type> list = em.createNamedQuery("Type.findAll", Type.class)
             .getResultList();

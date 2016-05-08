@@ -23,7 +23,7 @@ public class GoalMtd {
         return h;
     }
 
-    public static List<Goal> getAll() {
+    public static List<Goal> getAllGoal() {
         EntityManager em = Life.instance.createEntityManager();
         List<Goal> list = em.createNamedQuery("Goal.findAll", Goal.class)
             .getResultList();
@@ -31,27 +31,27 @@ public class GoalMtd {
         return list;
     }
 
-    public static Goal saveGoal(Goal h) {
+    public static Goal saveGoal(Goal g) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        em.persist(h);
+        em.persist(g);
         tx.commit();
         Life.instance.closeConnections(em);
-        return h;
+        return g;
     } 
 
-    public static Goal updateGoal(Goal h) {
+    public static Goal updateGoal(Goal g) {
         EntityManager em = Life.instance.createEntityManager(); 
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        h=em.merge(h);
+        g=em.merge(g);
         tx.commit();
         Life.instance.closeConnections(em);
-        return h;
+        return g;
     }
 
-    public static List<Goal> getByPidTid(int tid,int pid) {
+    public static List<Goal> getGolByPidTid(int tid,int pid) {
      EntityManager em = Life.instance.createEntityManager(); 
          List<Goal> list = em.createNamedQuery("Goal.findByPidTid", Goal.class)
 		.setParameter("pid", pid)
