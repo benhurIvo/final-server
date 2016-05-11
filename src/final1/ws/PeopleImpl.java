@@ -145,5 +145,10 @@ public class PeopleImpl implements People {
 	GoalMtd.removeGoal(g);
 	return GoalMtd.getAllGoal();
     }
+
+    @Override
+    public List<Goal> getGoalByPid(int pid) {
+	return GoalMtd.getGoalByPid(pid);
+    }
  
 }

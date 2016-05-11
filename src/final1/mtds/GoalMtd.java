@@ -71,4 +71,13 @@ public class GoalMtd {
         Life.instance.closeConnections(em);
     }
     
+     public static List<Goal> getGoalByPid(int personId) {
+        EntityManager em = Life.instance.createEntityManager(); 
+         List<Goal> list = em.createNamedQuery("Goal.findByPid", Goal.class)
+		.setParameter("pid", personId)
+		.getResultList();
+        Life.instance.closeConnections(em);
+        return list;
+    }
+    
 }

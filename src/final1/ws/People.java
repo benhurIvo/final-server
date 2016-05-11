@@ -106,6 +106,11 @@ public interface People {
 //    @WebResult(name="person") 
     public Goal getGoalById(@WebParam(name="gid") int gid);
  
+@WebMethod(operationName="getGoalByPid")
+//    @WebResult(name="measure") 
+    public List<Goal> getGoalByPid(@WebParam(name="pid") int pid);
+    
+    
     @WebMethod(operationName="updateGoal")
 //    @WebResult(name="person") 
     public Goal updateGoal(@WebParam(name="goal") Goal g);
