@@ -9,6 +9,8 @@ package final1.endpoint;
  *
  * @author benhur
  */
+import final1.domain.Person;
+import final1.mtds.PersonMtd;
 import final1.ws.PeopleImpl;
 import java.net.InetAddress;
 import java.net.URI;
@@ -37,6 +39,7 @@ public class PeoplePublisher {
         System.out.println("Starting People Service...");
         System.out.println("--> Published. Check out "+endpointUrl+"?wsdl");
         Endpoint.publish(endpointUrl, new PeopleImpl());
+	     
     }
 }
 //https://hidden-beach-21772.herokuapp.com/ws/people?wsdl
