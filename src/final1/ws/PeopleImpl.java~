@@ -34,7 +34,6 @@ public class PeopleImpl implements People {
 
     @Override
     public Person savePerson(Person person) {
-	System.out.println("pers "+person.getFirstname() + " "+person.getLastname());
 	return PersonMtd.savePerson(person);
     }
 
