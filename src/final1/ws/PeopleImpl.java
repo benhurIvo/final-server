@@ -35,9 +35,9 @@ public class PeopleImpl implements People {
     @Override
     public String savePerson(String person) {
 	try{
-	System.out.println("pers "+person.getFirstname() + " "+person.getLastname());
+	System.out.println("perss "+person.getFirstname() + " "+person.getLastname());
 	}catch(Exception ex){
-	    System.out.println("hmmmm exceptn \n\n\n\n");
+	    System.out.println("\n hmmmm exceptn \n\n\n\n");
 	    ex.printStackTrace();
 	}
 	return person;//PersonMtd.savePerson(person);
