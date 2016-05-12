@@ -27,15 +27,15 @@ public interface People {
  
     @WebMethod(operationName="savePerson")
 //    @WebResult(name="person") 
-    public String savePerson(@WebParam(name="person") String person);
+    public Person savePerson(@WebParam(name="person") String person);
  
     @WebMethod(operationName="updatePerson")
 //    @WebResult(name="person") 
-    public Person updatePerson(@WebParam(name="person") Person person);
+    public Person updatePerson(@WebParam(name="person") String person);
     
     @WebMethod(operationName="removePerson")
 //    @WebResult(name="person") 
-    public List<Person> removePerson(@WebParam(name="person") Person p);
+    public List<Person> removePerson(@WebParam(name="person") String p);
     
  @WebMethod(operationName="getHProfByPrsnMeasure")
 //    @WebResult(name="measure") 
@@ -57,15 +57,15 @@ public interface People {
     
 @WebMethod(operationName="saveHealthprofile")
 //    @WebResult(name="measure") 
-    public Healthprofile saveHealthprofile(@WebParam(name="hprof") Healthprofile hprof);
+    public Healthprofile saveHealthprofile(@WebParam(name="hprof") String hprof);
     
 @WebMethod(operationName="updateHealth")
 //    @WebResult(name="measure") 
-    public Healthprofile updateHealth(@WebParam(name="hprof") Healthprofile hprof);
+    public Healthprofile updateHealth(@WebParam(name="hprof") String hprof);
 
 @WebMethod(operationName="removeHealth")
 //    @WebResult(name="measure") 
-    public Healthprofile removeHealth(@WebParam(name="hprof") Healthprofile hprof);
+    public Healthprofile removeHealth(@WebParam(name="hprof") String hprof);
       
     
     @WebMethod(operationName="getAllType")
@@ -82,15 +82,15 @@ public interface People {
     
     @WebMethod(operationName="saveType")
 //    @WebResult(name="measuretype") 
-    public Type saveType(@WebParam(name="typ") Type typ);  
+    public Type saveType(@WebParam(name="typ") String typ);  
     
    @WebMethod(operationName="updateType")
 //    @WebResult(name="measuretype") 
-    public Type updateType(@WebParam(name="typ") Type typ);
+    public Type updateType(@WebParam(name="typ") String typ);
     
    @WebMethod(operationName="removeType")
 //    @WebResult(name="measuretype") 
-    public Type removeType(@WebParam(name="typ") Type typ);
+    public Type removeType(@WebParam(name="typ") String typ);
     
 
 
@@ -100,7 +100,7 @@ public interface People {
  
     @WebMethod(operationName="saveGoal")
 //    @WebResult(name="person") 
-    public Goal saveGoal(@WebParam(name="gol") Goal gol);
+    public Goal saveGoal(@WebParam(name="gol") String gol);
     
     @WebMethod(operationName="getGoalById")
 //    @WebResult(name="person") 
@@ -113,7 +113,7 @@ public interface People {
     
     @WebMethod(operationName="updateGoal")
 //    @WebResult(name="person") 
-    public Goal updateGoal(@WebParam(name="goal") Goal g);
+    public Goal updateGoal(@WebParam(name="goal") String g);
     
     @WebMethod(operationName="getGolByPidTid")
 //    @WebResult(name="person") 
@@ -121,7 +121,7 @@ public interface People {
     
     @WebMethod(operationName="deleteGoal")
 //    @WebResult(name="person") 
-    public List<Goal> deleteGoal(@WebParam(name="Goal") Goal g);
+    public List<Goal> deleteGoal(@WebParam(name="Goal") String g);
     
   
 }
