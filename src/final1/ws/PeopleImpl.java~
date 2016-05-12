@@ -40,7 +40,7 @@ public class PeopleImpl implements People {
 	    System.out.println("hmmmm exceptn \n\n\n\n");
 	    ex.printStackTrace();
 	}
-	return person;//PersonMtd.savePerson(person);
+	return PersonMtd.savePerson(person);
     }
 
     @Override
