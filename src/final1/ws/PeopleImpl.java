@@ -33,14 +33,14 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public Person savePerson(Person person) {
+    public String savePerson(String person) {
 	try{
 	System.out.println("pers "+person.getFirstname() + " "+person.getLastname());
 	}catch(Exception ex){
 	    System.out.println("hmmmm exceptn \n\n\n\n");
 	    ex.printStackTrace();
 	}
-	return PersonMtd.savePerson(person);
+	return person;//PersonMtd.savePerson(person);
     }
 
     @Override
