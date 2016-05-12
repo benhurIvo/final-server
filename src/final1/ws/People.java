@@ -27,7 +27,7 @@ public interface People {
  
     @WebMethod(operationName="savePerson")
 //    @WebResult(name="person") 
-    public Person savePerson(@WebParam(name="person") Person person);
+    public String savePerson(@WebParam(name="person") String person);
  
     @WebMethod(operationName="updatePerson")
 //    @WebResult(name="person") 
