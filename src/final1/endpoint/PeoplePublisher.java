@@ -42,4 +42,4 @@ public class PeoplePublisher {
 	     
     }
 }
-//https://hidden-beach-21772.herokuapp.com/ws/people?wsdl
+//http://peaceful-scrubland-97910.herokuapp.com/ws/people?wsdl

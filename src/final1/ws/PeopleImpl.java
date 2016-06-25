@@ -227,4 +227,9 @@ public class PeopleImpl implements People {
 	return GoalMtd.getGoalByPid(pid);
     }
 
+    @Override
+    public List<Healthprofile> getAllHealth() {
+	return HealthMtd.getAllHP();
+    }
+
 }

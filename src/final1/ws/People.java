@@ -67,6 +67,10 @@ public interface People {
 //    @WebResult(name="measure") 
     public Healthprofile removeHealth(@WebParam(name="hprof") String hprof);
       
+@WebMethod(operationName="getAllHealth")
+//    @WebResult(name="measuretype") 
+    public List<Healthprofile> getAllHealth();
+    
     
     @WebMethod(operationName="getAllType")
 //    @WebResult(name="measuretype") 
