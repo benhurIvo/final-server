@@ -25,7 +25,7 @@ public class HealthMtd {
 
     public static List<Healthprofile> getAllHP() {
         EntityManager em = Life.instance.createEntityManager();
-        List<Healthprofile> list = em.createNamedQuery("Health.findAll", Healthprofile.class)
+        List<Healthprofile> list = em.createNamedQuery("Healthprofile.findAll", Healthprofile.class)
             .getResultList();
         Life.instance.closeConnections(em);
         return list;

@@ -35,7 +35,7 @@ public interface People {
     
     @WebMethod(operationName="removePerson")
 //    @WebResult(name="person") 
-    public List<Person> removePerson(@WebParam(name="person") String p);
+    public List<Person> removePerson(@WebParam(name="person") Person p);
     
  @WebMethod(operationName="getHProfByPrsnMeasure")
 //    @WebResult(name="measure") 
@@ -65,7 +65,7 @@ public interface People {
 
 @WebMethod(operationName="removeHealth")
 //    @WebResult(name="measure") 
-    public Healthprofile removeHealth(@WebParam(name="hprof") String hprof);
+    public Healthprofile removeHealth(@WebParam(name="hprof") Healthprofile hprof);
       
 @WebMethod(operationName="getAllHealth")
 //    @WebResult(name="measuretype") 

@@ -9,15 +9,11 @@ package final1.endpoint;
  *
  * @author benhur
  */
-import final1.domain.Person;
-import final1.mtds.PersonMtd;
 import final1.ws.PeopleImpl;
 import java.net.InetAddress;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.io.IOException;
 
-import javax.xml.ws.Endpoint;
 
 import javax.xml.ws.Endpoint;
 

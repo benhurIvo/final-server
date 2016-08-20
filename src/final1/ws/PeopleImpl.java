@@ -33,7 +33,7 @@ public class PeopleImpl implements People {
 
     @Override
     public List<Person> getAll() {
-	return PersonMtd.getAll();
+	return PersonMtd.getAllPeople();
     }
 
     @Override
@@ -59,15 +59,10 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public List<Person> removePerson(String p) {
-	Person ob = new Person();
-	try {
-	    ob = new ObjectMapper().readValue(p, Person.class);
-	} catch (IOException ex) {
-	    ex.printStackTrace();
-	    }
-	 PersonMtd.removePerson(ob);
-	 return PersonMtd.getAll();
+    public List<Person> removePerson(Person p) {
+	
+	 PersonMtd.removePerson(p);
+	 return PersonMtd.getAllPeople();
     }
 
     @Override
@@ -113,14 +108,9 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public Healthprofile removeHealth(String hprof) {
-	Healthprofile ob = new Healthprofile();
-	try {
-	    ob = new ObjectMapper().readValue(hprof, Healthprofile.class);
-	} catch (IOException ex) {
-	    ex.printStackTrace();
-	    }
-	HealthMtd.removeHealth(ob);
+    public Healthprofile removeHealth(Healthprofile hprof) {
+
+	HealthMtd.removeHealth(hprof);
 	return HealthMtd.getAllHP().get(0);
     }
 

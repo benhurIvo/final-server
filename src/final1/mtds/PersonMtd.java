@@ -36,7 +36,7 @@ public class PersonMtd {
         return pzz;
     }
 
-    public static List<Person> getAll() {	
+    public static List<Person> getAllPeople() {	
 	List<Person> pz = new ArrayList<Person>();
         EntityManager em = Life.instance.createEntityManager();
         List<Person> Plist = em.createNamedQuery("Person.findAll", Person.class)

@@ -17,8 +17,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,8 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Goal.findByGid", query = "SELECT g FROM Goal g WHERE g.gid = :gid"),
     @NamedQuery(name = "Goal.findByPidTid", query = "SELECT g FROM Goal g WHERE g.pid.pid = :pid and g.tid.tid = :tid"),
     @NamedQuery(name = "Goal.findByPidGid", query = "SELECT g FROM Goal g WHERE g.pid.pid = :pid and g.tid = :tid"),
-    @NamedQuery(name = "Goal.findByPid", query = "SELECT g FROM Goal g WHERE g.pid.pid = :pid")})
-
+@NamedQuery(name = "Goal.findByPid", query = "SELECT g FROM Goal g WHERE g.pid.pid = :pid")})
 public class Goal implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,14 +43,16 @@ public class Goal implements Serializable {
     @Column(name = "gid")
     private Integer gid;
     @Basic(optional = false)
+    @NotNull
     @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "goal")
     private String goal;
     @JoinColumn(name = "pid", referencedColumnName = "pid")
     @ManyToOne(optional = false)
     private Person pid;
     @JoinColumn(name = "tid", referencedColumnName = "tid")
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Type tid;
 
     public Goal() {

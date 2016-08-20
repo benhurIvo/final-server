@@ -17,8 +17,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -34,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Healthprofile.findByPidTid", query = "SELECT h FROM Healthprofile h WHERE h.pid.pid = :pid and h.tid.tid = :tid"),
     @NamedQuery(name = "Healthprofile.findByPidHid", query = "SELECT h FROM Healthprofile h WHERE h.pid.pid = :pid and h.hid = :hid"),
     @NamedQuery(name = "Healthprofile.findByDateRange", query = "SELECT h FROM Healthprofile h WHERE h.pid.pid = :pid and h.datecreated between :d1 and :d2"),
-    @NamedQuery(name = "Healthprofile.findByPid", query = "SELECT h FROM Healthprofile h WHERE h.pid.pid = :pid")})
+@NamedQuery(name = "Healthprofile.findByPid", query = "SELECT h FROM Healthprofile h WHERE h.pid.pid = :pid")})
 public class Healthprofile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,19 +44,23 @@ public class Healthprofile implements Serializable {
     @Column(name = "hid")
     private Integer hid;
     @Basic(optional = false)
+    @NotNull
     @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "value")
     private String value;
     @Basic(optional = false)
+    @NotNull
     @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "datecreated")
     private String datecreated;
-    @JoinColumn(name = "tid", referencedColumnName = "tid")
-    @OneToOne(optional = false)
-    private Type tid;
     @JoinColumn(name = "pid", referencedColumnName = "pid")
     @ManyToOne(optional = false)
     private Person pid;
+    @JoinColumn(name = "tid", referencedColumnName = "tid")
+    @ManyToOne(optional = false)
+    private Type tid;
 
     public Healthprofile() {
     }
@@ -94,20 +99,20 @@ public class Healthprofile implements Serializable {
 	this.datecreated = datecreated;
     }
 
-    public Type getTid() {
-	return tid;
-    }
-
-    public void setTid(Type tid) {
-	this.tid = tid;
-    }
-
     public Person getPid() {
 	return pid;
     }
 
     public void setPid(Person pid) {
 	this.pid = pid;
+    }
+
+    public Type getTid() {
+	return tid;
+    }
+
+    public void setTid(Type tid) {
+	this.tid = tid;
     }
 
     @Override

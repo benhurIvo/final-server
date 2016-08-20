@@ -6,6 +6,7 @@
 package final1.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,9 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,15 +43,19 @@ public class Type implements Serializable {
     @Column(name = "tid")
     private Integer tid;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "type")
     private String type;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "measure")
     private String measure;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "tid")
-    private Healthprofile healthprofile;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "tid")
-    private Goal goal;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tid")
+    private Collection<Healthprofile> healthprofileCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tid")
+    private Collection<Goal> goalCollection;
 
     public Type() {
     }
@@ -86,20 +94,22 @@ public class Type implements Serializable {
 	this.measure = measure;
     }
 
-    public Healthprofile getHealthprofile() {
-	return healthprofile;
+    @XmlTransient
+    public Collection<Healthprofile> getHealthprofileCollection() {
+	return healthprofileCollection;
     }
 
-    public void setHealthprofile(Healthprofile healthprofile) {
-	this.healthprofile = healthprofile;
+    public void setHealthprofileCollection(Collection<Healthprofile> healthprofileCollection) {
+	this.healthprofileCollection = healthprofileCollection;
     }
 
-    public Goal getGoal() {
-	return goal;
+    @XmlTransient
+    public Collection<Goal> getGoalCollection() {
+	return goalCollection;
     }
 
-    public void setGoal(Goal goal) {
-	this.goal = goal;
+    public void setGoalCollection(Collection<Goal> goalCollection) {
+	this.goalCollection = goalCollection;
     }
 
     @Override
