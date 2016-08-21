@@ -85,7 +85,10 @@ public class PersonMtd {
         return p;
     }
 
-    public static void removePerson(Person p) {
+    public static void removePerson(int pid) {
+	System.out.println("person removing "+pid);
+	Person p = new Person();
+	p.setPid(pid);
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();

@@ -59,9 +59,9 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public List<Person> removePerson(Person p) {
+    public List<Person> removePerson(int pid) {
 	
-	 PersonMtd.removePerson(p);
+	 PersonMtd.removePerson(pid);
 	 return PersonMtd.getAllPeople();
     }
 

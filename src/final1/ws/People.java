@@ -35,7 +35,7 @@ public interface People {
     
     @WebMethod(operationName="removePerson")
 //    @WebResult(name="person") 
-    public List<Person> removePerson(@WebParam(name="person") Person p);
+    public List<Person> removePerson(@WebParam(name="pid") int pid);
     
  @WebMethod(operationName="getHProfByPrsnMeasure")
 //    @WebResult(name="measure") 
