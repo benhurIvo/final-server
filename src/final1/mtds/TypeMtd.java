@@ -8,7 +8,6 @@ package final1.mtds;
 
 import final1.dao.Life;
 import final1.domain.*;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -17,7 +16,10 @@ import javax.persistence.EntityTransaction;
  *
  * @author benhur
  */
+//Methods used to maniputate the type class from the database
 public class TypeMtd {
+    
+    //Retrieve type by id
        public static Type getTypeById(int tid) {
         EntityManager em = Life.instance.createEntityManager();
         Type t = em.find(Type.class, tid);
@@ -25,6 +27,7 @@ public class TypeMtd {
         return t;
     }
 
+       //Return all types in the db
     public static List<Type> getAllType() {
         EntityManager em = Life.instance.createEntityManager();
         List<Type> list = em.createNamedQuery("Type.findAll", Type.class)
@@ -33,6 +36,7 @@ public class TypeMtd {
         return list;
     }
 
+    //Return a type's information given its tag name
      public static List<Type> getTypeByString(String st) {
         EntityManager em = Life.instance.createEntityManager();
         List<Type> list = em.createNamedQuery("Type.findByType", Type.class)
@@ -42,6 +46,7 @@ public class TypeMtd {
         return list;
     }
     
+     //save a new type in the db
     public static Type saveType(Type t) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -52,6 +57,7 @@ public class TypeMtd {
         return t;
     } 
 
+    //update a type stored in the db
     public static Type updateType(Type t) {
         EntityManager em = Life.instance.createEntityManager(); 
         EntityTransaction tx = em.getTransaction();
@@ -62,6 +68,7 @@ public class TypeMtd {
         return t;
     }
 
+    //delete a given type
     public static void removeType(Type t) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -71,19 +78,5 @@ public class TypeMtd {
         tx.commit();
         Life.instance.closeConnections(em);
     }
-    
-         
-//      public static List<MeasureTyp> getMeasuretypes() {
-//         EntityManager em = Life.instance.createEntityManager();
-//        List<Type> Tlist = em.createNamedQuery("Type.findAll", Type.class)
-//		.getResultList();
-//	Life.instance.closeConnections(em);
-//	List<MeasureTyp> mt = new ArrayList<MeasureTyp>();
-//	for(Type t:Tlist){
-//	MeasureTyp mtt = new MeasureTyp();
-//	mtt.setValue(t.getType());
-//	mt.add(mtt);
-//	}
-//        return mt;
-//    }
+
 }

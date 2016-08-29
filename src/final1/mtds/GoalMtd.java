@@ -15,7 +15,10 @@ import javax.persistence.EntityTransaction;
  *
  * @author benhur
  */
+//Methods used to retrieve information about goals
 public class GoalMtd {
+    
+    //get goal using goal id
      public static Goal getGoalById(int gid) {
         EntityManager em = Life.instance.createEntityManager();
         Goal h = em.find(Goal.class, gid);
@@ -23,6 +26,7 @@ public class GoalMtd {
         return h;
     }
 
+     //get all goals in the db
     public static List<Goal> getAllGoal() {
         EntityManager em = Life.instance.createEntityManager();
         List<Goal> list = em.createNamedQuery("Goal.findAll", Goal.class)
@@ -31,6 +35,7 @@ public class GoalMtd {
         return list;
     }
 
+    //save goal
     public static Goal saveGoal(Goal g) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -41,6 +46,7 @@ public class GoalMtd {
         return g;
     } 
 
+    //update a given goal in the database
     public static Goal updateGoal(Goal g) {
         EntityManager em = Life.instance.createEntityManager(); 
         EntityTransaction tx = em.getTransaction();
@@ -51,6 +57,7 @@ public class GoalMtd {
         return g;
     }
 
+    //retrieve a goal by person and type ids
     public static List<Goal> getGolByPidTid(int tid,int pid) {
      EntityManager em = Life.instance.createEntityManager(); 
          List<Goal> list = em.createNamedQuery("Goal.findByPidTid", Goal.class)
@@ -61,6 +68,7 @@ public class GoalMtd {
 	return list;
     }
     
+    //delete goal
     public static void removeGoal(Goal g) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -71,6 +79,7 @@ public class GoalMtd {
         Life.instance.closeConnections(em);
     }
     
+    //get goals made by a person
      public static List<Goal> getGoalByPid(int personId) {
         EntityManager em = Life.instance.createEntityManager(); 
          List<Goal> list = em.createNamedQuery("Goal.findByPid", Goal.class)

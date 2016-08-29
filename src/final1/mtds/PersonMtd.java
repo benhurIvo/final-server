@@ -21,41 +21,29 @@ import org.w3c.dom.NodeList;
  *
  * @author benhur
  */
+
+//Methods used to manipulate data of the person table in db
 public class PersonMtd {
+    //Retrieve a person using the id
     public static Person returnPersonById(int personId) {
         EntityManager em = Life.instance.createEntityManager();
         Person p = em.find(Person.class, personId);
-	   Person pzz = new Person();
-	    pzz.setPid(p.getPid());
-	    pzz.setFirstname(p.getFirstname());
-	    pzz.setLastname(p.getLastname());
-	    pzz.setBirthdate(p.getBirthdate());
-	
-	//pzz.setHProfile(hp);
-        Life.instance.closeConnections(em);
-        return pzz;
+	Life.instance.closeConnections(em);
+        return p;
     }
 
+    
+    //return a list of all people in db
     public static List<Person> getAllPeople() {	
 	List<Person> pz = new ArrayList<Person>();
         EntityManager em = Life.instance.createEntityManager();
         List<Person> Plist = em.createNamedQuery("Person.findAll", Person.class)
-          .getResultList();
-//	for(Person p:Plist){
-//	    Person pzz = new Person();
-//	    pzz.setPid(p.getPid());
-//	    pzz.setFirstname(p.getFirstname());
-//	    pzz.setLastname(p.getLastname());
-//	    pzz.setBirthdate(p.getBirthdate());
-//	List<Healthprofile> list = em.createNamedQuery("Healthprofile.findByPid", Healthprofile.class)
-//		.setParameter("pid", p.getPid())
-//		.getResultList();
-//	
-//	}	
+          .getResultList();	
         Life.instance.closeConnections(em);
         return Plist;
     }
 
+    //Get a person by id
      public static Person getPersonById(int personId) {
        EntityManager em = Life.instance.createEntityManager();
        List<Person> plist = em.createNamedQuery("Person.findByPid", Person.class)
@@ -65,6 +53,8 @@ public class PersonMtd {
         return plist.get(0);
     }
     
+     
+     //Save a new person
     public static Person savePerson(Person p) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -75,6 +65,7 @@ public class PersonMtd {
         return p;
     } 
 
+    //update the person's info
     public static Person updatePerson(Person p) {
         EntityManager em = Life.instance.createEntityManager(); 
         EntityTransaction tx = em.getTransaction();
@@ -85,6 +76,7 @@ public class PersonMtd {
         return p;
     }
 
+    //delete a person from the db
     public static void removePerson(int pid) {
 	System.out.println("person removing "+pid);
 	Person p = new Person();
@@ -98,6 +90,7 @@ public class PersonMtd {
         Life.instance.closeConnections(em);
     }
     
+    //Get a person's health profile
       public static List<Healthprofile> getHProfByPrsnMeasure(int personId,String ms) {
 	EntityManager em = Life.instance.createEntityManager();
        List<Healthprofile> list = new ArrayList<Healthprofile>();//getHealthprof(personId);
@@ -109,7 +102,7 @@ public class PersonMtd {
         return list;
     }     
      
-      
+      //Get a person's healthpofile using his id
         public static List<Healthprofile> getHealthprofByPid(int personId) {
         EntityManager em = Life.instance.createEntityManager(); 
          List<Healthprofile> list = em.createNamedQuery("Healthprofile.findByPid", Healthprofile.class)
@@ -119,22 +112,12 @@ public class PersonMtd {
         return list;
     }
       
+	//Get a person's healthpofile using his person id and the type id
       public static Healthprofile getHealthProfByPidTid(int pid,int mid) {
 	 EntityManager em = Life.instance.createEntityManager();
        List<Healthprofile> list = HealthMtd.getHealthByPidTid(pid, mid);	
         Life.instance.closeConnections(em);
         return list.get(0);
     }    
-      
-//      public static Helthprofile addMeasure(Helthprofile h) {
-//         EntityManager em = Life.instance.createEntityManager();
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//        em.persist(h);
-//        tx.commit();
-//        Life.instance.closeConnections(em);
-//        return h;
-//    }
-
       
 }

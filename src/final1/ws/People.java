@@ -9,11 +9,11 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import javax.jws.WebResult;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
+//Methods used in the webservice
 @WebService
 @SOAPBinding(style = Style.DOCUMENT, use=Use.LITERAL) //optional
 public interface People {
@@ -65,7 +65,7 @@ public interface People {
 
 @WebMethod(operationName="removeHealth")
 //    @WebResult(name="measure") 
-    public Healthprofile removeHealth(@WebParam(name="hprof") Healthprofile hprof);
+    public Healthprofile removeHealth(@WebParam(name="hid") int hid);
       
 @WebMethod(operationName="getAllHealth")
 //    @WebResult(name="measuretype") 
@@ -95,8 +95,6 @@ public interface People {
    @WebMethod(operationName="removeType")
 //    @WebResult(name="measuretype") 
     public Type removeType(@WebParam(name="typ") String typ);
-    
-
 
     @WebMethod(operationName="getAllGoal")
 //    @WebResult(name="person") 
@@ -125,7 +123,7 @@ public interface People {
     
     @WebMethod(operationName="deleteGoal")
 //    @WebResult(name="person") 
-    public List<Goal> deleteGoal(@WebParam(name="Goal") String g);
+    public List<Goal> deleteGoal(@WebParam(name="Goal") int g);
     
   
 }

@@ -15,7 +15,11 @@ import javax.persistence.EntityTransaction;
  *
  * @author benhur
  */
+
+//Methods used while dealing with Healthprofile
 public class HealthMtd {
+    
+    //Retrieve health profile by h.profile id
       public static Healthprofile getHealthById(int hid) {
         EntityManager em = Life.instance.createEntityManager();
         Healthprofile h = em.find(Healthprofile.class, hid);
@@ -23,6 +27,7 @@ public class HealthMtd {
         return h;
     }
 
+      //Get all healthprofiles in the db
     public static List<Healthprofile> getAllHP() {
         EntityManager em = Life.instance.createEntityManager();
         List<Healthprofile> list = em.createNamedQuery("Healthprofile.findAll", Healthprofile.class)
@@ -31,6 +36,7 @@ public class HealthMtd {
         return list;
     }
 
+    //Store new h.profile in db
     public static Healthprofile saveHealthprofile(Healthprofile h) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -41,6 +47,7 @@ public class HealthMtd {
         return h;
     } 
 
+    //update already stored h.profile in db
     public static Healthprofile updateHealth(Healthprofile h) {
         EntityManager em = Life.instance.createEntityManager(); 
         EntityTransaction tx = em.getTransaction();
@@ -51,6 +58,7 @@ public class HealthMtd {
         return h;
     }
 
+    //retrive h.profile by a person's id and h.profile id
     public static List<Healthprofile> getByPidHid(int hid,int pid) {
      EntityManager em = Life.instance.createEntityManager(); 
          List<Healthprofile> list = em.createNamedQuery("Healthprofile.findByPidHid", Healthprofile.class)
@@ -61,6 +69,7 @@ public class HealthMtd {
 	return list;
     }
     
+    //Retrieve h.profile by a person's id and type id
     public static List<Healthprofile> getHealthByPidTid(int pid,int tid) {
      EntityManager em = Life.instance.createEntityManager(); 
          List<Healthprofile> list = em.createNamedQuery("Healthprofile.findByPidTid", Healthprofile.class)
@@ -71,6 +80,8 @@ public class HealthMtd {
 	return list;
     }
     
+    
+    //delete a given h.profile
     public static void removeHealth(Healthprofile h) {
         EntityManager em = Life.instance.createEntityManager();
         EntityTransaction tx = em.getTransaction();

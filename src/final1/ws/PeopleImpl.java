@@ -11,12 +11,8 @@ import final1.mtds.HealthMtd;
 import final1.mtds.PersonMtd;
 import final1.mtds.TypeMtd;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.jws.WebService;
 
@@ -108,9 +104,10 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public Healthprofile removeHealth(Healthprofile hprof) {
-
-	HealthMtd.removeHealth(hprof);
+    public Healthprofile removeHealth(int hid) {
+	Healthprofile hp = new Healthprofile();
+	hp.setHid(hid);
+	HealthMtd.removeHealth(hp);
 	return HealthMtd.getAllHP().get(0);
     }
 
@@ -201,13 +198,9 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public List<Goal> deleteGoal(String g) {
+    public List<Goal> deleteGoal(int g) {
 	Goal ob = new Goal();
-	try {
-	    ob = new ObjectMapper().readValue(g, Goal.class);
-	} catch (IOException ex) {
-	    ex.printStackTrace();
-	    }
+	ob.setGid(g);
 	GoalMtd.removeGoal(ob);
 	return GoalMtd.getAllGoal();
     }
